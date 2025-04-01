@@ -1,12 +1,13 @@
-import {View, Text, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView} from 'react-native';
+import { View, Text, StyleSheet, TextInput, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, Dimensions } from 'react-native';
 import React from 'react';
 import { FIREBASE_AUTH } from '../../FirebaseConfig'; 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+const { width } = Dimensions.get('window');
 
 const Login = () => {  
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [error, setError] = React.useState(false);
     const auth = FIREBASE_AUTH;
     const [loading, setLoading] = React.useState(false);
 
@@ -17,40 +18,51 @@ const Login = () => {
             console.log(response);
         } catch (error: any) {
             console.error(error);
-            alert('Sign in failed!' + error.message);
+            alert('Sign in failed! ' + error.message);
         } finally {
             setLoading(false);
         }
     }
-
-    const signUp = async () => {
-        setLoading(true);
-        try { 
-            const response = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(response);
-            alert('Check your emails!');
-        } catch (error: any) {
-            console.error(error);
-            alert('Sign in failed!' + error.message);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-
 
     return (
         <View style={styles.container}>
-            <KeyboardAvoidingView behavior="padding" >
-            <TextInput value={email} style={styles.input} placeholder="Email" autoCapitalize="none" onChangeText={(text) => setEmail(text)}></TextInput>
-            <TextInput secureTextEntry={true} value={password} style={styles.input} placeholder="Password" autoCapitalize="none" onChangeText={(text) => setPassword(text)}></TextInput>
-            
-        { loading ? <ActivityIndicator size="large" color="#0000ff" /> 
-        : <>
-        <Button title="Login" onPress={signIn}/>
-        <Button title="Create account" onPress={signUp}/>
-        </>}
-            </KeyboardAvoidingView>    
+            {/* Smoodle Logo */}
+            <Image source={require('../../assets/šmoodle.png')} style={styles.logo} />
+
+            {/* University Name */}
+            <Text style={styles.subtitle}>Vidzemes Augstskola (ViA)</Text>
+
+            {/* Email & Password Inputs */}
+            <KeyboardAvoidingView behavior="padding" style={styles.inputContainer}>
+                <TextInput 
+                    value={email} 
+                    style={styles.input} 
+                    placeholder="E-mail" 
+                    placeholderTextColor="#A0A0A0" // Light gray placeholder text
+                    autoCapitalize="none" 
+                    keyboardType="email-address"
+                    onChangeText={(text) => setEmail(text)} 
+                />
+                
+                <TextInput 
+                    secureTextEntry={true} 
+                    value={password} 
+                    style={styles.input} 
+                    placeholder="Password" 
+                    placeholderTextColor="#A0A0A0" // Light gray placeholder text
+                    autoCapitalize="none" 
+                    onChangeText={(text) => setPassword(text)} 
+                />
+            </KeyboardAvoidingView>
+
+            {/* Login Button */}
+            {loading ? (
+                <ActivityIndicator size="large" color="#F98012" />
+            ) : (
+                <TouchableOpacity style={styles.loginButton} onPress={signIn}>
+                    <Text style={styles.loginText}>Log In</Text>
+                </TouchableOpacity>
+            )}
         </View>
     );
 };
@@ -59,20 +71,46 @@ export default Login;
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20,
         flex: 1,
-        justifyContent: 'center',
+        backgroundColor: '#EDE5F6', // Light purple background
+        alignItems: 'center',
+        paddingTop: 30,
+    },
+    logo: {
+        width: 252,
+        height: 120,
+        resizeMode: 'contain',
+        marginBottom: 0,
+        marginTop: 50,
+    },
+    subtitle: {
+        fontSize: 20,
+        color: '#F98012',
+        marginBottom: 150,
+        fontWeight: "bold",
+    },
+    inputContainer: {
+        width: width * 0.85,
     },
     input: {
-        marginVertical: 4,
+        width: '100%',
         height: 50,
-        borderWidth: 1,
-        borderRadius: 4,
-        padding: 10,
-        backgroundColor: '#fff',
-    }
-});    
-
-function setLoading(arg0: boolean) {
-    throw new Error('Function not implemented.');
-}
+        borderBottomWidth: 1,
+        marginBottom: 15,
+        paddingHorizontal: 10,
+        fontSize: 16,
+        color: '#A0A0A0', // Light gray text color
+    },
+    loginButton: {
+        backgroundColor: '#F98012',
+        paddingVertical: 15,
+        paddingHorizontal: 50,
+        borderRadius: 100,
+        marginTop: 190,
+    },
+    loginText: {
+        fontSize: 18,
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+    },
+});
