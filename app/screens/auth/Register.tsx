@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import { FIREBASE_AUTH, FIREBASE_DB } from '../../FirebaseConfig';
+import { FIREBASE_AUTH, FIREBASE_DB } from '../../../FirebaseConfig';
 
 const { width } = Dimensions.get('window');
 

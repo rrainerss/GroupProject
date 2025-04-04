@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TextInput, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, Dimensions } from 'react-native';
 import React from 'react';
-import { FIREBASE_AUTH } from '../../FirebaseConfig'; 
+import { FIREBASE_AUTH } from '../../../FirebaseConfig'; 
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const { width } = Dimensions.get('window');
@@ -27,7 +27,7 @@ const Login = () => {
     return (
         <View style={styles.container}>
             {/* Smoodle Logo */}
-            <Image source={require('../../assets/šmoodle.png')} style={styles.logo} />
+            <Image source={require("../../../assets/smoodle.png")} style={styles.logo} />
 
             {/* University Name */}
             <Text style={styles.subtitle}>Vidzemes Augstskola (ViA)</Text>

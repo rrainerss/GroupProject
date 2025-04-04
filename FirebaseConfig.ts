@@ -9,14 +9,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBY9syzM7q2AZDKpbx9NCXGyheB1qSMFQw",
-  authDomain: "smoodle-fe977.firebaseapp.com",
-  databaseURL: "https://smoodle-fe977-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "smoodle-fe977",
-  storageBucket: "smoodle-fe977.firebasestorage.app",
-  messagingSenderId: "825831455390",
-  appId: "1:825831455390:web:5a979e0bf0a4534673d98f",
-  measurementId: "G-E3VZ9KEBDV"
+  apiKey: "AIzaSyD33rFaHk7Y6YpCnGICSex1dkwKyq4nOaE",
+  authDomain: "groupproject-53c9a.firebaseapp.com",
+  projectId: "groupproject-53c9a",
+  storageBucket: "groupproject-53c9a.firebasestorage.app",
+  messagingSenderId: "981083796327",
+  appId: "1:981083796327:web:dac7aa583fb49f2fc475c2",
+  measurementId: "G-DGVVR7RYX7"
 };
 
 // Initialize Firebase

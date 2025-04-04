@@ -14,14 +14,14 @@ const Welcome = ({ navigation }: any) => {
 
       {/* AppName Image */}
       <Image 
-        source={require('../../assets/šmoodle.png')} 
+        source={require("../../../assets/smoodle.png")} 
         style={styles.logo}
         resizeMode="contain"
       />
 
       {/* Roblox Character Image */}
       <Image 
-        source={require('../../assets/noob.png')} 
+        source={require("../../../assets/noob.png")} 
         style={styles.character}
         resizeMode="contain"
       />

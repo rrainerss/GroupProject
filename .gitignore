@@ -37,3 +37,4 @@ yarn-error.*
 
 app.json
 firebaseConfig.ts
+biezais.FirebaseConfig.ts
